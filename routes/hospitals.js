@@ -7,7 +7,13 @@ const {
   createHospital,
   updateHospital,
   deleteHospital,
+  getVacCenters,
 } = require("../controllers/hospitals");
+
+//Include other resource routers
+const appointmentRouter = require("./appointments");
+const VacCenter = require("../models/VacCenter");
+router.use("/:hospitalId/appointments/", appointmentRouter);
 
 router
   .route("/")
@@ -19,3 +25,5 @@ router
   .put(protect, authorize("admin"), updateHospital)
   .delete(protect, authorize("admin"), deleteHospital);
 module.exports = router;
+
+router.route("/vacCenters").get(getVacCenters);

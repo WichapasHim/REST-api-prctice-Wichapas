@@ -8,6 +8,7 @@ dotenv.config({ path: "./config/config.env" });
 
 //Routes files
 const hospitals = require("./routes/hospitals");
+const appointments = require("../routes/appointments");
 const auth = require("./routes/auth");
 const app = express();
 //connect to database
@@ -23,6 +24,8 @@ app.use("/api/v1/auth", auth);
 
 //Mount routers
 app.use("/api/v1/hospitals", hospitals);
+app.use("/api/v1/appointments", appointments);
+
 const PORT = process.env.PORT || 6000;
 
 const server = app.listen(
